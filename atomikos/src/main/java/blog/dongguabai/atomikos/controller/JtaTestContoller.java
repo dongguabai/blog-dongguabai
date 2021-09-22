@@ -1,7 +1,7 @@
-package blog.dongguabai.atomikos.web;
+package blog.dongguabai.atomikos.controller;
 
 
-import blog.dongguabai.atomikos.service3.JtaTestService;
+import blog.dongguabai.atomikos.service3.JtaService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
@@ -16,18 +16,18 @@ import java.util.Map;
 public class JtaTestContoller {
 
     @Autowired
-    @Qualifier("jtaTestServiceImpl")
-    private JtaTestService taTestService;
+    private JtaService jtaService;
 
 
 
     @ResponseBody
     @RequestMapping("/test01")
-    public Map<String,Object> test01(){
+    public Object test01(){
         LinkedHashMap<String,Object> resultMap=new LinkedHashMap<String,Object>();
         try {
-            return taTestService.test01();
+            return jtaService.test01();
         }catch (Exception e){
+            e.printStackTrace();
             resultMap.put("state","fail");
             resultMap.put("message","分布式事务同步失败");
             return resultMap;

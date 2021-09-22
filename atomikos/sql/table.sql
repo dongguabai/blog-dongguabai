@@ -1,0 +1,10 @@
+
+-- spvi
+CREATE TABLE IF NOT EXISTS `spvi_t1`(
+   `id` INT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- Demo1
+CREATE TABLE IF NOT EXISTS `demo1_t1`(
+   `id` INT
+)ENGINE=InnoDB DEFAULT CHARSET=utf8;
