@@ -30,6 +30,7 @@ public class JtaService {
     public Object test01() {
         tService.insertId(1);
         t2Service.insertId2(1);
+        //int i = 0/0;
         return "OK";
     }
 }
