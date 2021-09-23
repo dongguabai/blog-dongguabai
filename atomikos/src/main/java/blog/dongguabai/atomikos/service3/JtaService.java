@@ -14,7 +14,7 @@ import java.util.Map;
 
 /**
  * @author Dongguabai
- * @description
+ * @description jtaService
  * @date 2021-09-22 17:25
  */
 @Service
@@ -26,11 +26,12 @@ public class JtaService {
     @Autowired
     private T2Service t2Service;
 
-    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { RuntimeException.class })
-    //@Transactional(transactionManager = "xatx", propagation = Propagation.REQUIRED, rollbackFor = { RuntimeException.class })
+   // @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { RuntimeException.class })
+   @Transactional(transactionManager = "xatx", propagation = Propagation.REQUIRED, rollbackFor = { RuntimeException.class })
     public Object test01() {
         tService.insertId(1);
-        t2Service.insertId2(1);
+       t2Service.insertId2("abc");
+       // t2Service.insertId2(1);
         //int i = 0/0;
         return "OK";
     }

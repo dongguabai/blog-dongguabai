@@ -22,12 +22,13 @@ import javax.transaction.UserTransaction;
 import java.util.Properties;
 
 /**
- * Druid配置
- *
- * @author zhaojiatao
+ * @author Dongguabai
+ * @description atomikos配置
+ * @date 2021-09-23 23:07
  */
 @Configuration
-public class DruidConfig {
+public class AtomikosDruidConfig {
+
     @Bean(name = "systemDataSource")
     @Primary
     @Autowired
@@ -45,17 +46,14 @@ public class DruidConfig {
     @Autowired
     @Bean(name = "businessDataSource")
     public AtomikosDataSourceBean businessDataSource(Environment env) {
-
         AtomikosDataSourceBean ds = new AtomikosDataSourceBean();
         Properties prop = build(env, "spring.datasource.druid.businessDB.");
         ds.setXaDataSourceClassName("com.alibaba.druid.pool.xa.DruidXADataSource");
         ds.setUniqueResourceName("businessDB");
         ds.setPoolSize(5);
         ds.setXaProperties(prop);
-
         return ds;
     }
-
 
     /**
      * 注入事物管理器
