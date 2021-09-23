@@ -26,7 +26,8 @@ public class JtaService {
     @Autowired
     private T2Service t2Service;
 
-    @Transactional(transactionManager = "xatx", propagation = Propagation.REQUIRED, rollbackFor = { RuntimeException.class })
+    @Transactional(propagation = Propagation.REQUIRED, rollbackFor = { RuntimeException.class })
+    //@Transactional(transactionManager = "xatx", propagation = Propagation.REQUIRED, rollbackFor = { RuntimeException.class })
     public Object test01() {
         tService.insertId(1);
         t2Service.insertId2(1);

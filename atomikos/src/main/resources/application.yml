@@ -6,7 +6,7 @@ spring:
 
       systemDB:
         name: systemDB
-        url: jdbc:mysql://10.224.221.111:3306/spvi?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://192.168.18.176:3306/spvi?useUnicode=true&characterEncoding=utf-8
         username: root
         password: root
         # 下面为连接池的补充设置，应用到上面所有数据源中
@@ -37,7 +37,7 @@ spring:
       businessDB:
         name: businessDB
 
-        url: jdbc:mysql://10.224.221.111:3306/Demo1?useUnicode=true&characterEncoding=utf-8
+        url: jdbc:mysql://192.168.18.176:3306/Demo1?useUnicode=true&characterEncoding=utf-8
         username: root
         password: root
         # 下面为连接池的补充设置，应用到上面所有数据源中
