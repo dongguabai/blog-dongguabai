@@ -4,7 +4,8 @@
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>org.bytesoft.bytetcc.sample</groupId>
-    <artifactId>springcloud-sample-provider-0.5.x</artifactId>
+    <artifactId>sample-provider</artifactId>
+    <!--<artifactId>springcloud-sample-provider-0.5.x</artifactId>-->
     <version>0.0.2</version>
     <packaging>jar</packaging>
     <name>springcloud-sample-provider</name>
