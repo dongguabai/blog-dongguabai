@@ -22,11 +22,11 @@ import org.springframework.context.annotation.Import;
  * 按事务粒度负载均衡(使用文件系统存储事务日志):需引入SpringCloudSecondaryConfiguration;
  */
 @Import(SpringCloudSecondaryConfiguration.class)
-@MapperScan("com.bytesvc.consumer.dao")
+@MapperScan("blog.dongguabai.bytetcc.sample.consumer.consumer.dao")
 @EnableDiscoveryClient
 @EnableEurekaClient
-@EnableFeignClients("com.bytesvc.feign")
-@SpringBootApplication(scanBasePackages = "com.bytesvc.consumer")
+@EnableFeignClients("blog.dongguabai.bytetcc.sample.consumer.feign")
+@SpringBootApplication(scanBasePackages = "blog.dongguabai.bytetcc.sample.consumer")
 @EnableCircuitBreaker
 @EnableHystrix
 @EnableAutoConfiguration(exclude = { MongoAutoConfiguration.class })  // 使用文件存储时, 不需要配置mongodb
