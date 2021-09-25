@@ -1,11 +1,11 @@
 package blog.dongguabai.bytetcc.sample.provider.service.impl;
 
+import blog.dongguabai.bytetcc.sample.provider.service.IAccountService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.bytesvc.provider.service.IAccountService;
 
 @Service("accountServiceCancel")
 public class AccountServiceCancel implements IAccountService {

@@ -15,7 +15,7 @@ import org.springframework.context.annotation.Import;
  */
 @Import(SpringCloudSecondaryConfiguration.class)
 @EnableDiscoveryClient
-@SpringBootApplication(scanBasePackages = "com.bytesvc.provider")
+@SpringBootApplication(scanBasePackages = "blog.dongguabai.bytetcc.sample.provider")
 @EnableAutoConfiguration(exclude = { MongoAutoConfiguration.class }) // 使用文件存储时, 不需要配置mongodb
 public class SampleProviderMain {
 
