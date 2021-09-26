@@ -1,5 +1,6 @@
 package blog.dongguabai.springbootmultidatasource.conf;
 
+import com.alibaba.druid.pool.DruidDataSource;
 import com.alibaba.druid.spring.boot.autoconfigure.DruidDataSourceBuilder;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.mybatis.spring.SqlSessionFactoryBean;
@@ -25,7 +26,8 @@ public class DataSourceConfiguration2 {
     @Bean(name = "test2DataSource")
     @ConfigurationProperties(prefix = "spring.datasource.test2")
     public DataSource getDateSource2() {
-        return DruidDataSourceBuilder.create().build();
+        DruidDataSource druidDataSource = DruidDataSourceBuilder.create().build();
+        return druidDataSource;
     }
 
     @Bean(name = "test2SqlSessionFactory")
