@@ -12,4 +12,7 @@ public interface VipMapper {
 
     @Insert("insert into demo1_t1 (id) values(#{id})")
     Integer insertOrderId(@Param("id")Object id);
+
+    @Insert("delete fro  demo1_t1 where id = #{id}")
+    Integer deleteByOrderId(@Param("id")Object id);
 }

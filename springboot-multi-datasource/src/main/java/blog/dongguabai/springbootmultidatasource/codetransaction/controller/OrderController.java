@@ -24,6 +24,10 @@ public class OrderController {
         return orderService.createOrder();
     }
 
+    @RequestMapping("create2")
+    public Object createOrder2(){
+        return orderService.createOrder2();
+    }
 
     @RequestMapping("all")
     public Object searchAll(){

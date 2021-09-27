@@ -16,8 +16,11 @@ import java.util.List;
 public interface OrderMapper {
 
     @Insert("insert into demo1_order_info(order_state) values (#{orderInfo.orderState})")
-    @Options(useGeneratedKeys = true, keyProperty = "id", keyColumn = "id")
+    @Options(useGeneratedKeys = true, keyProperty = "orderInfo.id", keyColumn = "id")
     int insertOrder(@Param("orderInfo") OrderInfo orderInfo);
+
+    @Insert("update demo1_order_info set order_state = #{orderState} where id = #{orderId}")
+    int updateOrderById(@Param("orderId") Integer orderId, @Param("orderState") String orderState);
 
     @Select("select * from demo1_order_info")
     List<OrderInfo> searchAll();
