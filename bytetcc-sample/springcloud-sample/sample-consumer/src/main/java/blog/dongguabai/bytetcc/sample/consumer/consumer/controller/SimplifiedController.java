@@ -24,6 +24,11 @@ public class SimplifiedController implements ITransferService {
 	@Autowired
 	private IAccountService acctService;
 
+	/**
+	 * post 请求：localhost:7080/simplified/transfer?sourceAcctId=1001&targetAcctId=2001&amount=1。
+	 * 也就是从 `tb_account_one` 表中的 1001 号用户给 `tb_account_two` 表中的 2001 用户转 1 块钱；
+	 * 查看数据库发现数据变化正常，即表示项目基本使用成功
+	 */
 	@ResponseBody
 	@RequestMapping(value = "/simplified/transfer", method = RequestMethod.POST)
 	@Transactional
