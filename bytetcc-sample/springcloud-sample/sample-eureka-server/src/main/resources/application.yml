@@ -3,9 +3,12 @@ server:
 
 eureka:
   instance:
-    hostname: inst1
+   hostname: inst1
   client:
     registerWithEureka: false
     fetchRegistry: false
     serviceUrl:
       defaultZone: http://inst1:7000/eureka/
+  server:
+      # 关闭自我保护
+      enable-self-preservation: false

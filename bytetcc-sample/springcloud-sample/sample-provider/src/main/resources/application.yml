@@ -3,24 +3,7 @@ server:
 
 eureka:
   instance:
-    hostname: ${spring.cloud.client.ip-address}
-    instance-id: ${spring.cloud.client.ip-address}:${spring.application.name}:${server.port}
-    prefer-ip-address: true
+   hostname: inst1
   client:
     serviceUrl:
-      defaultZone: http://127.0.0.1:7000/eureka/
-
-
-spring:
-  datasource:
-    url: jdbc:mysql://192.168.18.176:3306/Demo1?useUnicode=true&characterEncoding=utf-8&useSSL=false&serverTimezone=Asia/Shanghai
-    username: root
-    password: root
-    driver-class-name: com.mysql.cj.jdbc.Driver
-    type: org.apache.commons.dbcp2.BasicDataSource
-#  data:
-#    mongodb:
-#      uri: mongodb://10.37.147.250:27017/bytetcc
-#  cloud:
-#    zookeeper:
-#      connectString: 127.0.0.1:2181
+      defaultZone: http://inst1:7000/eureka/

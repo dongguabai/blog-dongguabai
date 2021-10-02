@@ -1,6 +1,12 @@
 <configuration>
     <property name="LOG_FILE_NAME" value="provider.log" />
 
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>%date %-5level [%thread] - [%logger] - %msg%n</pattern>
+        </encoder>
+    </appender>
+
     <appender name="FILE" class="ch.qos.logback.core.FileAppender">
         <file>${LOG_FILE_NAME}</file>
         <encoder>
@@ -9,6 +15,6 @@
     </appender>
 
     <root level="INFO">
-        <appender-ref ref="FILE" />
+        <appender-ref ref="STDOUT" />
     </root>
 </configuration>

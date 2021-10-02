@@ -14,13 +14,14 @@ public class AccountServiceCancel implements IAccountService {
 
 	@Transactional
 	public void increaseAmount(String acctId, double amount) {
-		this.jdbcTemplate.update("update tb_account_one set amount = amount - ? where acct_id = ?", amount, acctId);
+		int value = this.jdbcTemplate.update("update tb_account_one set frozen = frozen - ? where acct_id = ?", amount, acctId);
 		System.out.printf("undo increase: acct= %s, amount= %7.2f%n", acctId, amount);
 	}
 
 	@Transactional
 	public void decreaseAmount(String acctId, double amount) {
-		this.jdbcTemplate.update("update tb_account_one set amount = amount + ? where acct_id = ?", amount, acctId);
+		int value = this.jdbcTemplate.update(
+				"update tb_account_one set amount = amount + ?, frozen = frozen - ? where acct_id = ?", amount, amount, acctId);
 		System.out.printf("undo decrease: acct= %s, amount= %7.2f%n", acctId, amount);
 	}
 

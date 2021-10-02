@@ -1,5 +1,4 @@
 package blog.dongguabai.bytetcc.sample.consumer.consumer.controller;
-
 import blog.dongguabai.bytetcc.sample.consumer.consumer.dao.TransferDao;
 import blog.dongguabai.bytetcc.sample.consumer.consumer.service.ITransferService;
 import blog.dongguabai.bytetcc.sample.consumer.feign.server.IAccountService;
@@ -13,11 +12,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 
-/**
- * 本类中不涉及Confirm逻辑, Confirm逻辑样例在SimplifiedController类中.<br />
- * 如需为本类添加Confirm逻辑, 可参考Cancel逻辑的做法, 设置confirmableKey即可.
- */
-@Compensable(interfaceClass = ITransferService.class, cancellableKey = "transferServiceCancel")
+@Compensable(interfaceClass = ITransferService.class, confirmableKey = "transferServiceConfirm", cancellableKey = "transferServiceCancel")
 @RestController
 public class TransferController implements ITransferService {
 	@Autowired
@@ -35,8 +30,21 @@ public class TransferController implements ITransferService {
 	}
 
 	private void increaseAmount(String acctId, double amount) {
-		this.transferDao.increaseAmount(acctId, amount);
+		int value = this.transferDao.increaseAmount(acctId, amount);
+		if (value != 1) {
+			throw new IllegalStateException("ERROR!");
+		}
 		System.out.printf("exec increase: acct= %s, amount= %7.2f%n", acctId, amount);
+	}
+
+	/**
+	 * 本方法用于演示： TransferController中可以存在@Compensable.interfaceClass指定接口中未定义的方法. <br />
+	 * 需要注意的是, 未在interfaceClass接口中定义的方法, 不属于可补偿型业务操作, 不走TCC全局事务. <br />
+	 */
+	@ResponseBody
+	@RequestMapping(value = "/getAmount", method = RequestMethod.POST)
+	public Double getAmount(@RequestParam String targetAcctId) {
+		return this.transferDao.getAcctAmount(targetAcctId);
 	}
 
 }
