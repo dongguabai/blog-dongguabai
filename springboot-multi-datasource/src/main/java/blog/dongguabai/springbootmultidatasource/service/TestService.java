@@ -32,4 +32,10 @@ public class TestService {
         int a = 1/0;
         return "OK";
     }
+
+    @Transactional
+    public String test2(String id) {
+        spv1T1Mapper.insertId2(Integer.valueOf(id));
+        return "OK";
+    }
 }
