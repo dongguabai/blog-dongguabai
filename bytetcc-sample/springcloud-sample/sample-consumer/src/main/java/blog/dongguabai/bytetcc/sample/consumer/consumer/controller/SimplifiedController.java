@@ -27,8 +27,8 @@ public class SimplifiedController implements ITransferService {
 	@RequestMapping(value = "/simplified/transfer", method = RequestMethod.POST)
 	@Transactional
 	public void transfer(@RequestParam String sourceAcctId, @RequestParam String targetAcctId, @RequestParam double amount) {
-		this.acctService.decreaseAmount(sourceAcctId, amount);
-		this.increaseAmount(targetAcctId, amount);
+		this.acctService.decreaseAmount(sourceAcctId, amount);  // tb_account_one表中的1001用户扣款
+		this.increaseAmount(targetAcctId, amount);  // try
 
 		// throw new IllegalStateException("rollback!");
 	}

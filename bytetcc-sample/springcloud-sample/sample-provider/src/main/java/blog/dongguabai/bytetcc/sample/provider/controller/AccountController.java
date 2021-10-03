@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
  * 因此, 0.4.x版本强制对外提供TCC服务的Controller必须加@Compensable注解(若没有实质业务, 也可以不必指定confirmableKey和cancellableKey).<br />
  * 若不加@Compensable注解, 则ByteTCC将其当成普通服务对待, 不接收Consumer端传播的事务上下文. 若它后续调用TCC服务, 则将开启新的TCC全局事务.
  */
+//取消同名方法
 @Compensable(interfaceClass = IAccountService.class, confirmableKey = "accountServiceConfirm", cancellableKey = "accountServiceCancel")
 @RestController
 public class AccountController implements IAccountService {
@@ -45,7 +46,7 @@ public class AccountController implements IAccountService {
 		}
 		System.out.printf("exec decrease: acct= %s, amount= %7.2f%n", acctId, amount);
 
-		// throw new IllegalStateException("error");
+		//throw new IllegalStateException("error");
 	}
 
 }

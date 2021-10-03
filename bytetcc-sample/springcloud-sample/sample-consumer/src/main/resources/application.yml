@@ -7,3 +7,6 @@ eureka:
   client:
     serviceUrl:
       defaultZone: http://inst1:7000/eureka/
+ribbon:
+  ConnectTimeout: 90000000 #请求连接的超时时间，默认时间为1秒
+  ReadTimeout: 90000000 #请求处理的超时时间
