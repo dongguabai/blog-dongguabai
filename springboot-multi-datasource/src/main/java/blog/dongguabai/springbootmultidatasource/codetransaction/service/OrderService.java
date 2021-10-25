@@ -42,6 +42,24 @@ public class OrderService {
         return ImmutableMap.of("订单号:", orderInfo.getId());
     }
 
+    /**
+     * 更换顺序
+     * @return
+     */
+    @Transactional
+    public Object createOrder3() {
+
+        OrderInfo orderInfo = new OrderInfo();
+        payService.rpcPay(11111);   //rpc
+
+        orderInfo.setOrderState("有效");
+        orderMapper.insertOrder(orderInfo);        //本地事务1
+        vipMapper.insertOrderId(orderInfo.getId());    //本地事务2
+
+
+        return ImmutableMap.of("订单号:", orderInfo.getId());
+    }
+
     @Autowired
     private TransactionTemplate transactionTemplate;
 

@@ -32,4 +32,5 @@
     <logger name="blog.dongguabai.springbootmultidatasource.mapper" level="DEBUG" additivity="false">
         <appender-ref ref="console" />
     </logger>
+    <logger name="org.mybatis.spring.transaction" level="DEBUG"/>
 </configuration>

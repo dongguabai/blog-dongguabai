@@ -35,6 +35,8 @@ public class TestService {
 
     @Transactional
     public String test2(String id) {
+        System.out.println("11111111111");
+        System.out.println("22222222222");
         spv1T1Mapper.insertId2(Integer.valueOf(id));
         return "OK";
     }
