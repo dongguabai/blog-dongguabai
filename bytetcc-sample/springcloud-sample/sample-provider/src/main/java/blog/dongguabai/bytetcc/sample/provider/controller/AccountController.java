@@ -26,7 +26,7 @@ public class AccountController implements IAccountService {
 
 	@ResponseBody
 	@RequestMapping(value = "/increase", method = RequestMethod.POST)
-	@Transactional
+	@Transactional //try
 	public void increaseAmount(@RequestParam("acctId") String acctId, @RequestParam("amount") double amount) {
 		int value = this.jdbcTemplate.update("update tb_account_one set frozen = frozen + ? where acct_id = ?", amount, acctId);
 		if (value != 1) {
