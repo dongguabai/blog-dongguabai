@@ -18,4 +18,8 @@ public class TService {
     public Object insertId(Object id){
         return tMapper.insertId(id);
     }
+
+    public Object selectById(Object id){
+        return tMapper.selectById(id);
+    }
 }

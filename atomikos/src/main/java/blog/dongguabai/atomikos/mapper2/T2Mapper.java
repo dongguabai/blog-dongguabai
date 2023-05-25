@@ -12,6 +12,6 @@ import org.apache.ibatis.annotations.Param;
  */
 public interface T2Mapper extends MyMapper<TClass> {
 
-    @Insert("insert into demo1_t1 (id) values(#{id})")
+    @Insert("insert into t2 (id) values(#{id})")
     Integer insertId2(@Param("id")Object id);
 }

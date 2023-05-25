@@ -6,9 +6,9 @@ spring:
 
       systemDB:
         name: systemDB
-        url: jdbc:mysql://ksc.test.mysql01.b2c.srv:3216/maf?useUnicode=true&characterEncoding=utf-8
-        username: maf_wn
-        password: OtCBr7eP9nFo8mR8OBbaw2xYJ96nffJV
+        url: jdbc:mysql://192.168.18.176:3306/spvi?useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root
         # 下面为连接池的补充设置，应用到上面所有数据源中
         # 初始化大小，最小，最大
         initialSize: 5
@@ -37,9 +37,9 @@ spring:
       businessDB:
         name: businessDB
 
-        url: jdbc:mysql://ksc.test.mysql01.b2c.srv:3216/maf_test?useUnicode=true&characterEncoding=utf-8
-        username: maf_test_wn
-        password: 9nCrx0GjgZd-nY_arm9rrxwsFMAEK4_Z1
+        url: jdbc:mysql://192.168.18.176:3306/Demo1?useUnicode=true&characterEncoding=utf-8
+        username: root
+        password: root
         # 下面为连接池的补充设置，应用到上面所有数据源中
         # 初始化大小，最小，最大
         initialSize: 5
