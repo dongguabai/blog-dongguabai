@@ -21,7 +21,7 @@ public class ServerDemo2 {
         //这里为了方便，获取ip地址就直接写了
         RpcServer rpcServer = new RpcServer(registryCenter,"127.0.0.1:12346");
         //绑定服务
-        rpcServer.bind(new HelloServiceImpl());
+        rpcServer.bind(new HelloServiceImpl(12346));
         rpcServer.publisher();
     }
 }
