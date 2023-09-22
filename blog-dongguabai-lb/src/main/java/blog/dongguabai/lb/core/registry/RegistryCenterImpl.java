@@ -12,6 +12,7 @@ import java.lang.management.ManagementFactory;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
+import java.util.stream.IntStream;
 
 /**
  * 注册中心实现
@@ -28,7 +29,8 @@ public class RegistryCenterImpl implements IRegistryCenter {
         curatorFramework = CuratorFrameworkFactory.builder()
                 .connectString(RegistryCenterConfig.CONNECTING_STR)
                 .sessionTimeoutMs(RegistryCenterConfig.SESSION_TIMEOUT)
-                .retryPolicy(new ExponentialBackoffRetry(1000, 10)).build();
+                .retryPolicy(new ExponentialBackoffRetry(1000, 10))
+                .build();
         curatorFramework.start();
     }
 
@@ -46,9 +48,9 @@ public class RegistryCenterImpl implements IRegistryCenter {
             String addressPath = serviceNodePath + "/" + serviceAddress;
             //临时节点
             String rsNode = curatorFramework.create().creatingParentsIfNeeded().withMode(CreateMode.EPHEMERAL).forPath(addressPath, RegistryCenterConfig.DEFAULT_VALUE);
-            refreshMetadata(addressPath);
             log.info("服务注册成功：{}", rsNode);
-
+            //启动更新元数据（上传）cpu 信息
+            refreshMetadata(addressPath);
         } catch (Exception e) {
             throw new RuntimeException("注册服务出现异常！", e);
         }
@@ -66,48 +68,49 @@ public class RegistryCenterImpl implements IRegistryCenter {
             } catch (Exception e) {
                 log.error("refreshMetadata error.", e);
             }
-        }, 3, 2, TimeUnit.SECONDS);
+        }, 5, 2, TimeUnit.SECONDS);
 
+        //模拟
+        highCpuUsage(port);
     }
-
-
-    public static void main(String[] args) throws InterruptedException {
-
-
-        while (true) {
-            int percentCpuLoad = getProcessCpuLoad();
-
-            //获取内存
-            log.info("CPU = {}", percentCpuLoad);
-            Thread.sleep(1000);
-
-            new Thread(() -> {
-                try {
-                    Thread.sleep(10000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-                System.out.println("开始搞事/....");
-                while (true) {
-                    // 空的计算任务，消耗CPU资源
-                    double result = Math.random() * Math.random();
-                }
-
-            }).start();
-
-        }
-
-    }
-
 
     private static final OperatingSystemMXBean OPERATING_SYSTEM_MX_BEAN = (OperatingSystemMXBean) ManagementFactory.getOperatingSystemMXBean();
 
     private static int getProcessCpuLoad() {
-        //获取CPU
+        //获取CPU Load
         double cpuLoad = OPERATING_SYSTEM_MX_BEAN.getProcessCpuLoad();
         return (int) (cpuLoad * 100);
     }
 
+    public void highCpuUsage(int port) {
+        //端口为12345的服务才进行模拟
+        if (port != 12345) {
+            return;
+        }
+        try {
+            //延迟3s
+            TimeUnit.SECONDS.sleep(3);
+        } catch (InterruptedException ignored) {
+        }
+        log.info("...........start highCpuUsage");
+        //执行20s
+        Thread cpuThread = new Thread(() -> call(), "highCpuUsage-thread");
+        cpuThread.start();
+        try {
+            cpuThread.join();
+            log.info("...........end highCpuUsage");
+        } catch (InterruptedException ignored) {
+        }
+    }
+
+    private void call() {
+        long startTime = System.currentTimeMillis();
+        long duration = 30000;
+        while (System.currentTimeMillis() - startTime < duration) {
+            // 空的计算任务，消耗CPU资源
+            double result = Math.random() * Math.random();
+        }
+    }
 }
 
 

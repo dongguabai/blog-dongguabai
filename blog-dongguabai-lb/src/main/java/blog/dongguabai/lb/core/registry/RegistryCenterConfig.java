@@ -11,7 +11,7 @@ public interface RegistryCenterConfig {
      */
     String CONNECTING_STR = "172.16.140.144,172.16.140.131";
 
-    int SESSION_TIMEOUT = 4000;
+    int SESSION_TIMEOUT = 400000;
 
     /**
      * 注册中心namespace

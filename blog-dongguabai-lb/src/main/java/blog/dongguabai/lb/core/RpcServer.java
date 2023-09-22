@@ -61,7 +61,7 @@ public class RpcServer {
             //循环获取所有的接口Name
             HANDLER_MAPPING.keySet().forEach(interfaceName->{
                 registryCenter.register(interfaceName,addressService);
-                log.info("注册服务成功：【serviceName：{}，address：{}】",interfaceName,addressService);
+               // log.info("注册服务成功：【serviceName：{}，address：{}】",interfaceName,addressService);
             });
             while (true){
                 //通过ServerSocket获取请求

@@ -11,5 +11,5 @@ public interface IServiceDiscovery {
      * @param serviceName
      * @return
      */
-    String discover(String serviceName);
+    Invoker discover(String serviceName);
 }

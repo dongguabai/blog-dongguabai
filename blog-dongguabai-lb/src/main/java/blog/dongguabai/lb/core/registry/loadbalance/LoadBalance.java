@@ -1,5 +1,7 @@
 package blog.dongguabai.lb.core.registry.loadbalance;
 
+import blog.dongguabai.lb.core.registry.Invoker;
+
 import java.util.List;
 
 /**
@@ -9,5 +11,5 @@ import java.util.List;
  */
 public interface LoadBalance {
 
-    String selectHost(List<String> repos);
+    Invoker selectHost(List<Invoker> repos);
 }

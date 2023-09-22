@@ -81,7 +81,7 @@ public class ProcessorHandler implements Runnable {
      * @param rpcRequest
      */
     private Object invoke(RpcRequest rpcRequest) throws NoSuchMethodException, InvocationTargetException, IllegalAccessException {
-        System.out.println("服务端开始调用------");
+       // System.out.println("服务端开始调用------");
         Object[] parameters = rpcRequest.getParameters();
         Class[] parameterTypes = new Class[parameters.length];
         for (int i = 0, length = parameters.length; i < length; i++) {
