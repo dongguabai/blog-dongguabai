@@ -1,4 +1,4 @@
-package blog.dongguabai.lb.core.demo;
+package blog.dongguabai.lb.example.server;
 
 import blog.dongguabai.lb.core.registry.RpcAnnotation;
 

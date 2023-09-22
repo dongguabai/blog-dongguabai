@@ -1,4 +1,4 @@
-package blog.dongguabai.lb.example.demoServer;
+package blog.dongguabai.lb.example.client;
 
 import java.rmi.RemoteException;
 import java.rmi.server.UnicastRemoteObject;

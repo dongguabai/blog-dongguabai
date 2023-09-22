@@ -5,6 +5,7 @@ import blog.dongguabai.lb.core.registry.loadbalance.RandomLoadBanalce;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.curator.framework.CuratorFramework;
 import org.apache.curator.framework.CuratorFrameworkFactory;
+import org.apache.curator.framework.api.GetChildrenBuilder;
 import org.apache.curator.framework.recipes.cache.PathChildrenCache;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheEvent;
 import org.apache.curator.framework.recipes.cache.PathChildrenCacheListener;
@@ -38,6 +39,7 @@ public class ServiceDiscoveryImpl implements IServiceDiscovery {
         //获取/rpcNode/dgb.nospring.myrpc.demo.IHelloService下所有协议地址
         String nodePath = RegistryCenterConfig.NAMESPACE+"/"+serviceName;
         try {
+            GetChildrenBuilder children = curatorFramework.getChildren();
             repos = curatorFramework.getChildren().forPath(nodePath);
         } catch (Exception e) {
             throw new RuntimeException("服务发现获取子节点异常！",e);

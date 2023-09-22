@@ -25,7 +25,7 @@ public class RemoteInvocationHandler implements InvocationHandler{
         rpcRequest.setParameters(args);
         //从ZK中获取地址 127.0.0.1:12345
         String discover = serviceDiscovery.discover(rpcRequest.getClassName());
-        System.out.println("获取的服务地址为："+discover);
+        //System.out.println("获取的服务地址为："+discover);
         TcpTransport tcpTransport = new TcpTransport(discover);
         return tcpTransport.send(rpcRequest);
     }

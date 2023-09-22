@@ -1,4 +1,4 @@
-package blog.dongguabai.lb.example.demoServer;
+package blog.dongguabai.lb.example.client;
 
 import java.net.MalformedURLException;
 import java.rmi.Naming;

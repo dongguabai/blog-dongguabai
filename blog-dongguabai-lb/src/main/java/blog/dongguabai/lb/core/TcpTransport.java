@@ -1,5 +1,7 @@
 package blog.dongguabai.lb.core;
 
+import lombok.extern.slf4j.Slf4j;
+
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
@@ -11,12 +13,13 @@ import java.net.Socket;
  * @author Dongguabai
  * @date 2018/11/1 16:25
  */
+@Slf4j
 public class TcpTransport {
 
     private String serviceAddress;
 
     private Socket newSocket() {
-        System.out.println("准备创建Socket连接，"+serviceAddress);
+        //System.out.println("准备创建Socket连接，"+serviceAddress);
         String[] split = serviceAddress.split(":");
         try {
             Socket socket = new Socket(split[0], Integer.parseInt(split[1]));
