@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>blog.dongguabai</groupId>
-	<artifactId>springboot-multi-datasource</artifactId>
+	<artifactId>donggauabi-multi-datasource</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>springboot-multi-datasource</name>
 	<description>springboot-multi-datasource</description>
