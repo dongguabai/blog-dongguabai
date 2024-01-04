@@ -64,7 +64,8 @@ public class DragRunDemo2 extends JFrame {
         try {
             JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
             compiler.run(null, null, null, file.getPath());
-            URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{file.getParentFile().toURI().toURL()});
+//            URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{file.getParentFile().toURI().toURL()});
+            CustomizedClassLoader classLoader = new CustomizedClassLoader(new URL[]{file.getParentFile().toURI().toURL()}, ClassLoader.getSystemClassLoader().getParent());
             String className = file.getName().replace(".java", "");
             Class<?> cls = Class.forName(className, true, classLoader);
             Method method = cls.getDeclaredMethod("main", String[].class);
@@ -88,7 +89,8 @@ public class DragRunDemo2 extends JFrame {
 
     private void runJar(File file, JTextArea textArea, String packageName) {
         try {
-            URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{file.toURI().toURL()});
+//            URLClassLoader classLoader = URLClassLoader.newInstance(new URL[]{file.toURI().toURL()});
+            CustomizedClassLoader classLoader = new CustomizedClassLoader(new URL[]{file.toURI().toURL()}, ClassLoader.getSystemClassLoader().getParent());
             JarFile jarFile = new JarFile(file);
             Enumeration<JarEntry> entries = jarFile.entries();
             while (entries.hasMoreElements()) {
