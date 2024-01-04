@@ -1,4 +1,4 @@
-package blog.dongguabai.others.drag_run;
+package blog.dongguabai.others.drag.run;
 
 import javax.swing.*;
 
