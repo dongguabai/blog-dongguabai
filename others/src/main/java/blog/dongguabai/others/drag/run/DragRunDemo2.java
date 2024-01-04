@@ -100,7 +100,8 @@ public class DragRunDemo2 extends JFrame {
                     if (className.startsWith(packageName)) {
                         Class<?> cls = Class.forName(className, true, classLoader);
                         for (Method method : cls.getDeclaredMethods()) {
-                            if (method.getName().equals("main") && Modifier.isStatic(method.getModifiers())) {
+                            //  if (method.getName().equals("main") && Modifier.isStatic(method.getModifiers())) {
+                            if (method.getName().equals("main")) {
                                 PrintStream originalOut = System.out;
                                 PrintStream out = new PrintStream(new OutputStream() {
                                     @Override
