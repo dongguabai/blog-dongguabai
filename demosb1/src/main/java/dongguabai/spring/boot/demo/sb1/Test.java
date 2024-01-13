@@ -1,4 +1,4 @@
-package demo.sb1;
+package dongguabai.spring.boot.demo.sb1;
 
 import org.springframework.stereotype.Component;
 

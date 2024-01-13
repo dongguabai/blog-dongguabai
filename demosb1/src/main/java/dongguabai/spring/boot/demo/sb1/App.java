@@ -1,4 +1,4 @@
-package demo.sb1;
+package dongguabai.spring.boot.demo.sb1;
 
 import org.springframework.beans.factory.support.DefaultListableBeanFactory;
 import org.springframework.boot.SpringApplication;

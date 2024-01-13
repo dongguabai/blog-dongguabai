@@ -1,6 +1,4 @@
-package demo.sb1;
-
-import java.util.concurrent.CompletableFuture;
+package dongguabai.spring.boot.demo.sb1;
 
 /**
  * @author dongguabai
