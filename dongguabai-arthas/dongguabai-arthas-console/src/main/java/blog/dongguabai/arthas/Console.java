@@ -1,5 +1,6 @@
 package blog.dongguabai.arthas;
 
+import com.sun.tools.attach.VirtualMachine;
 import org.jline.reader.LineReader;
 import org.jline.reader.LineReaderBuilder;
 import org.jline.terminal.Terminal;
@@ -58,11 +59,22 @@ public class Console {
             Integer.parseInt(input);
             if (pids.contains(input)) {
                 System.out.println("Hello, you choose " + input);
+                attachToProcess(input);
             } else {
                 System.out.println("Error: The input is not a PID of a currently running Java process");
             }
         } catch (NumberFormatException e) {
             System.out.println("Error: The input is not a PID of a currently running Java process");
+            e.printStackTrace();
+        } catch (Exception e) {
+            System.out.println("Error: Failed to attach to the process");
+            e.printStackTrace();
         }
+    }
+
+    private static void attachToProcess(String pid) throws Exception {
+        VirtualMachine vm = VirtualMachine.attach(pid);
+        vm.loadAgent("/path/to/your/agent.jar");
+        vm.detach();
     }
 }
