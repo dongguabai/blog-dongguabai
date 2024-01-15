@@ -76,9 +76,9 @@ public class Console {
     }
 
     private static void attachToProcess(String pid) throws Exception {
-        /*VirtualMachine vm = VirtualMachine.attach(pid);
+        VirtualMachine vm = VirtualMachine.attach(pid);
         System.out.println("Attach success");
-        vm.detach();*/
+        vm.detach();
     }
 
     private static void applyAgent(String pid, String className, String methodName) throws Exception {
