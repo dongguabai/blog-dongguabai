@@ -48,24 +48,27 @@ public class Console {
             String input = reader.readLine("> ");
             if ("quit".equals(input)) {
                 break;
+            } else if (pids.contains(input)) {
+                handleUserInput(input, reader);
             } else {
-                handleUserInput(input, pids);
+                System.out.println("Error: The input is not a PID of a currently running Java process");
             }
         }
     }
 
-    private static void handleUserInput(String input, Set<String> pids) {
+    private static void handleUserInput(String pid, LineReader reader) {
         try {
-            Integer.parseInt(input);
-            if (pids.contains(input)) {
-                System.out.println("Hello, you choose " + input);
-                attachToProcess(input);
+            attachToProcess(pid);
+            System.out.println("Attach success. Please input the class and method (format: com.example.MyClass#myMethod):");
+            String classAndMethod = reader.readLine("> ");
+            String[] parts = classAndMethod.split("#");
+            if (parts.length == 2) {
+                String className = parts[0];
+                String methodName = parts[1];
+                applyAgent(pid, className, methodName);
             } else {
-                System.out.println("Error: The input is not a PID of a currently running Java process");
+                System.out.println("Error: Invalid input format");
             }
-        } catch (NumberFormatException e) {
-            System.out.println("Error: The input is not a PID of a currently running Java process");
-            e.printStackTrace();
         } catch (Exception e) {
             System.out.println("Error: Failed to attach to the process");
             e.printStackTrace();
@@ -73,8 +76,15 @@ public class Console {
     }
 
     private static void attachToProcess(String pid) throws Exception {
+        /*VirtualMachine vm = VirtualMachine.attach(pid);
+        System.out.println("Attach success");
+        vm.detach();*/
+    }
+
+    private static void applyAgent(String pid, String className, String methodName) throws Exception {
         VirtualMachine vm = VirtualMachine.attach(pid);
-        vm.loadAgent("/path/to/your/agent.jar");
+        vm.loadAgent("/Users/dongguabai/IdeaProjects/gitee/blog-dongguabai/dongguabai-arthas/dongguabai-arthas-agent/target/dongguabai-arthas-agent-1.0-SNAPSHOT-jar-with-dependencies.jar", className + "#" + methodName);
         vm.detach();
+        System.out.println("Agent applied to " + className + "#" + methodName);
     }
 }
