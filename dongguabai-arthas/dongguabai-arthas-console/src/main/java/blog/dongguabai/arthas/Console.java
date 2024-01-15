@@ -104,8 +104,6 @@ public class Console {
         }).start();
         vm.loadAgent("/Users/dongguabai/IdeaProjects/gitee/blog-dongguabai/dongguabai-arthas/dongguabai-arthas-agent/target/dongguabai-arthas-agent-1.0-SNAPSHOT-jar-with-dependencies.jar", className + "#" + methodName + "#" + port);
         vm.detach();
-
-
         System.out.println("Agent applied to " + className + "#" + methodName);
     }
 }
