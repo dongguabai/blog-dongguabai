@@ -8,7 +8,10 @@ import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
 import java.util.Arrays;
-
+/**
+ * @author dongguabai
+ * @date 2024-01-14 11:28
+ */
 public class Agent {
 
     public static void premain(String agentArgs, Instrumentation inst) {
