@@ -8,6 +8,7 @@ import java.lang.instrument.ClassFileTransformer;
 import java.lang.instrument.Instrumentation;
 import java.lang.instrument.UnmodifiableClassException;
 import java.util.Arrays;
+
 /**
  * @author dongguabai
  * @date 2024-01-14 11:28
@@ -34,11 +35,10 @@ public class Agent {
 
     private static void initializeAgent(String agentArgs, final Instrumentation inst) throws Exception {
         String[] args = agentArgs.split("#");
-        final String className = args[0];
-        final String methodName = args[1];
-
-        inst.addTransformer(createTransformer(className, methodName), true);
-
+        String className = args[0];
+        String methodName = args[1];
+        int port = Integer.parseInt(args[2]);
+        inst.addTransformer(createTransformer(className, methodName, port), true);
         Arrays.stream(inst.getAllLoadedClasses())
                 .filter(clazz -> clazz.getName().equals(className))
                 .findFirst()
@@ -52,7 +52,7 @@ public class Agent {
                 });
     }
 
-    private static ClassFileTransformer createTransformer(String className, String methodName) {
+    private static ClassFileTransformer createTransformer(String className, String methodName, int port) {
         return (loader, className1, classBeingRedefined, protectionDomain, classfileBuffer) -> {
             if (!className1.replace("/", ".").equals(className)) {
                 return null;
@@ -61,8 +61,14 @@ public class Agent {
                 ClassPool cp = ClassPool.getDefault();
                 CtClass cc = cp.get(className1.replace("/", "."));
                 CtMethod m = cc.getDeclaredMethod(methodName);
-                m.insertBefore("System.out.println(\"Arguments: \" + java.util.Arrays.toString($args));");
-                m.insertAfter("System.out.println(\"Return: \" + $_);");
+                m.insertBefore("{ java.net.Socket socket = new java.net.Socket(\"localhost\", " + port + "); " +
+                        "java.io.PrintWriter out = new java.io.PrintWriter(socket.getOutputStream(), true); " +
+                        "out.println(\"Arguments: \" + java.util.Arrays.toString($args)); " +
+                        "out.close(); socket.close(); }");
+                m.insertAfter("{ java.net.Socket socket = new java.net.Socket(\"localhost\", " + port + "); " +
+                        "java.io.PrintWriter out = new java.io.PrintWriter(socket.getOutputStream(), true); " +
+                        "out.println(\"Return: \" + $_); " +
+                        "out.close(); socket.close(); }");
                 return cc.toBytecode();
             } catch (Exception e) {
                 System.out.println("Failed to transform class: " + className1);
