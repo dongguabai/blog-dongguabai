@@ -15,7 +15,6 @@ import java.util.concurrent.atomic.AtomicInteger;
 @Log4j
 public class TaskController {
 
-    // 创建一个自定义的 Executor
     private final Executor executor = new ThreadPoolExecutor(0, Integer.MAX_VALUE,
             60L, TimeUnit.SECONDS,
             new SynchronousQueue<>(),
