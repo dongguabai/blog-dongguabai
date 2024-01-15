@@ -64,10 +64,10 @@ public class Console {
             attachToProcess(pid);
             System.out.println("Attach success. Please input the class and method (format: com.example.MyClass#myMethod):");
             String classAndMethod = reader.readLine("> ");
-            String[] parts = classAndMethod.split("#");
-            if (parts.length == 2) {
-                String className = parts[0];
-                String methodName = parts[1];
+            String[] prams = classAndMethod.split("#");
+            if (prams.length == 2) {
+                String className = prams[0];
+                String methodName = prams[1];
                 applyAgent(pid, className, methodName);
             } else {
                 System.out.println("Error: Invalid input format");
