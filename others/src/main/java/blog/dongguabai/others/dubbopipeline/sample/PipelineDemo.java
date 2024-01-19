@@ -6,6 +6,9 @@ import blog.dongguabai.others.dubbopipeline.api.Pipeline;
 /**
  * @author dongguabai
  * @date 2024-01-17 20:09
+ *
+ * 批处理，比如现在有10000个id
+ *
  */
 public class PipelineDemo {
 
