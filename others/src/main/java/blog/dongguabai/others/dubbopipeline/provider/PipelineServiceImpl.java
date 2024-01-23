@@ -13,6 +13,8 @@ import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.CompletableFuture;
+import java.util.stream.Collectors;
 
 /**
  * @author dongguabai
@@ -26,19 +28,22 @@ public class PipelineServiceImpl implements PipelineService {
 
     @Override
     public List<OperationResult> executeBatch(Pipeline pipeline) {
-        List<OperationResult> results = new ArrayList<>();
-        for (Operation operation : pipeline.getOperations()) {
-            Object service = applicationContext.getBean(operation.getServiceClass());
-            try {
-                Method method = getMethod(service.getClass(), operation.getMethodName(), operation.getParameterTypes());
-                Object result = method.invoke(service, operation.getArgs());
-                results.add(new OperationResult(result, null));
-            } catch (Throwable e) {
-                e.printStackTrace();
-                results.add(new OperationResult(null, e));
-            }
-        }
-        return results;
+        List<CompletableFuture<OperationResult>> futures = pipeline.getOperations().stream()
+                .map(operation -> CompletableFuture.supplyAsync(() -> {
+                    Object service = applicationContext.getBean(operation.getServiceClass());
+                    try {
+                        Method method = getMethod(service.getClass(), operation.getMethodName(), operation.getParameterTypes());
+                        Object result = method.invoke(service, operation.getArgs());
+                        return new OperationResult(result, null);
+                    } catch (Throwable e) {
+                        e.printStackTrace();
+                        return new OperationResult(null, e);
+                    }
+                }))
+                .collect(Collectors.toList());
+        return futures.stream()
+                .map(CompletableFuture::join)
+                .collect(Collectors.toList());
     }
 
     private Method getMethod(Class<?> serviceClass, String methodName, Class<?>[] parameterTypes) throws NoSuchMethodException {

@@ -1,18 +1,24 @@
 package blog.dongguabai.others.dubbopipeline.sample;
 
 import blog.dongguabai.others.dubbopipeline.api.Operation;
+import blog.dongguabai.others.dubbopipeline.api.OperationResult;
 import blog.dongguabai.others.dubbopipeline.api.Pipeline;
+import blog.dongguabai.others.dubbopipeline.api.PipelineService;
+import jdk.nashorn.internal.ir.annotations.Reference;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 /**
  * @author dongguabai
  * @date 2024-01-17 20:09
- *
- * 批处理，比如现在有10000个id
- *
  */
 public class PipelineDemo {
 
-    public static void main(String[] args) {
+    @Reference
+    private PipelineService pipelineService;
+
+    public void execute() {
         Operation operation1 = new Operation()
                 .setServiceClass(UserService.class)
                 .setMethodName("findById")
@@ -28,6 +34,6 @@ public class PipelineDemo {
         Pipeline pipeline = new Pipeline()
                 .addOperation(operation1)
                 .addOperation(operation2);
-        //List<Object> results = pipelineService.executeBatch(pipeline);
+        List<OperationResult> operationResults = pipelineService.executeBatch(pipeline);
     }
 }

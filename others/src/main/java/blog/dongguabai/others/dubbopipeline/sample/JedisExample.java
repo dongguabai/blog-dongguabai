@@ -11,12 +11,11 @@ public class JedisExample {
 
     public static void main(String[] args) {
         Jedis jedis = new Jedis("localhost");
-        Pipeline pipelined = jedis.pipelined();
-
-        for (int i = 0; i < 10; i++) {
-            pipelined.set("key" + i, "value" + i);
-        }
-
-        pipelined.sync();
+        Pipeline pipeline = jedis.pipelined();
+        pipeline.set("name", "John");
+        pipeline.set("age", "25");
+        pipeline.incr("visits");
+        //执行 pipeline 中的所有命令
+        pipeline.sync();
     }
 }
