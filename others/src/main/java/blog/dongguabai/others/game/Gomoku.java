@@ -10,8 +10,8 @@ import java.awt.event.MouseEvent;
  * @date 2024-01-24 20:50
  */
 public class Gomoku extends JFrame {
-    private static final int SIZE = 15;
-    private static final int DOT_SIZE = 30;
+    private static final int SIZE = 50;
+    private static final int DOT_SIZE = 15;
     private int[][] board = new int[SIZE][SIZE];
     private boolean isBlackTurn = true;
 
