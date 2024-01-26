@@ -1,4 +1,4 @@
-package blog.others.javapuzzles;
+package com.github.dongguabai.blog.others.javapuzzles;
 
 /**
  * JavaPuzzle1&2:

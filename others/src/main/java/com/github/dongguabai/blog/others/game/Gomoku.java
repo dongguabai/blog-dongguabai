@@ -1,4 +1,4 @@
-package blog.others.game;
+package com.github.dongguabai.blog.others.game;
 
 import javax.swing.*;
 import java.awt.*;

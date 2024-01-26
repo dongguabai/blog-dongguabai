@@ -1,4 +1,4 @@
-package blog.others.drag.run;
+package com.github.dongguabai.blog.others.drag.run;
 
 import java.net.URL;
 import java.net.URLClassLoader;

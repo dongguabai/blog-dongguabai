@@ -1,4 +1,4 @@
-package blog.others.drag.run.test;
+package com.github.dongguabai.blog.others.drag.run.test;
 
 import java.util.Date;
 

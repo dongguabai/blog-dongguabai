@@ -1,9 +1,9 @@
-package blog.others.dubbopipeline.sample;
+package com.github.dongguabai.blog.others.dubbopipeline.sample;
 
-import blog.others.dubbopipeline.api.Operation;
-import blog.others.dubbopipeline.api.OperationResult;
-import blog.others.dubbopipeline.api.Pipeline;
-import blog.others.dubbopipeline.api.PipelineService;
+import com.github.dongguabai.blog.others.dubbopipeline.api.Operation;
+import com.github.dongguabai.blog.others.dubbopipeline.api.OperationResult;
+import com.github.dongguabai.blog.others.dubbopipeline.api.Pipeline;
+import com.github.dongguabai.blog.others.dubbopipeline.api.PipelineService;
 import jdk.nashorn.internal.ir.annotations.Reference;
 
 import java.util.List;

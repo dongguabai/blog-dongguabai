@@ -1,4 +1,4 @@
-package blog.others.sqlparse;
+package com.github.dongguabai.blog.others.sqlparse;
 
 /**
  * @author dongguabai

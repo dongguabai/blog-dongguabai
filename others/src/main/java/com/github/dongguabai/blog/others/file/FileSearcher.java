@@ -1,4 +1,4 @@
-package blog.others.file;
+package com.github.dongguabai.blog.others.file;
 
 import java.io.IOException;
 import java.nio.file.DirectoryStream;

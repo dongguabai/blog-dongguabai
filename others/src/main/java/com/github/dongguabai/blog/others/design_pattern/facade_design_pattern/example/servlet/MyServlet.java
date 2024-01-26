@@ -1,4 +1,4 @@
-package blog.others.design_pattern.facade_design_pattern.example.servlet;
+package com.github.dongguabai.blog.others.design_pattern.facade_design_pattern.example.servlet;
 
 import javax.servlet.Servlet;
 import javax.servlet.ServletConfig;

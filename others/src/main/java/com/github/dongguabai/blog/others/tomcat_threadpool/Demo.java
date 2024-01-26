@@ -1,4 +1,4 @@
-package blog.others.tomcat_threadpool;
+package com.github.dongguabai.blog.others.tomcat_threadpool;
 
 import org.apache.tomcat.util.threads.TaskQueue;
 import org.apache.tomcat.util.threads.TaskThreadFactory;

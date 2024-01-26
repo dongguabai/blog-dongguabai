@@ -1,4 +1,4 @@
-package blog.others.dubbopipeline.api;
+package com.github.dongguabai.blog.others.dubbopipeline.api;
 
 import java.util.ArrayList;
 import java.util.List;

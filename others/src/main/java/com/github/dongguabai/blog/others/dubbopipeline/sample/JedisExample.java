@@ -1,4 +1,4 @@
-package blog.others.dubbopipeline.sample;
+package com.github.dongguabai.blog.others.dubbopipeline.sample;
 
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.Pipeline;

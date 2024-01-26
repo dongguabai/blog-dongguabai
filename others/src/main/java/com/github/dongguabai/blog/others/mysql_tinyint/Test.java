@@ -1,4 +1,4 @@
-package blog.others.mysql_tinyint;
+package com.github.dongguabai.blog.others.mysql_tinyint;
 
 import java.sql.Connection;
 import java.sql.DriverManager;

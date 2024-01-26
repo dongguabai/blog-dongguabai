@@ -1,8 +1,8 @@
-package blog.others.dubbopipeline.provider;
+package com.github.dongguabai.blog.others.dubbopipeline.provider;
 
-import blog.others.dubbopipeline.api.OperationResult;
-import blog.others.dubbopipeline.api.Pipeline;
-import blog.others.dubbopipeline.api.PipelineService;
+import com.github.dongguabai.blog.others.dubbopipeline.api.OperationResult;
+import com.github.dongguabai.blog.others.dubbopipeline.api.Pipeline;
+import com.github.dongguabai.blog.others.dubbopipeline.api.PipelineService;
 import org.apache.dubbo.config.annotation.Service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
